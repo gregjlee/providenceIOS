@@ -9,7 +9,7 @@
 #import "ProfileViewController.h"
 #import <AFNetworking.h>
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-#define localStudentsURL [NSURL URLWithString:@"http://localhost:3000/students.json"]
+#define qrSiteURL @"http://qrfree.kaywa.com/?l=1&s=8&d="
 @interface ProfileViewController ()
 
 @end
@@ -27,7 +27,9 @@
     _nameLabel.text=[NSString stringWithFormat:@"Name: %@",_student.name];
     _studentIDLabel.text=[NSString stringWithFormat:@"studentID: %d", _student.idNum];
     _weightLabel.text=[NSString stringWithFormat:@"weight: %d", _student.weight];
-    [_imageView setImageWithURL:[self imageFullURLFromURL:_student.imageURL]];
+    [_imageView setImageWithURL:[MappingProvider imageURL:_student.imageURL FromString:_url] placeholderImage:[UIImage imageNamed:@"ironman3.jpeg"]];
+    NSURL *qrURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@%d",qrSiteURL,_student.idNum]];
+    [_qrImageView setImageWithURL:qrURL placeholderImage:[UIImage imageNamed:@"trollFace.png"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,10 +39,9 @@
 }
 
 - (IBAction)findStudent:(id)sender {
-    [_idTextField resignFirstResponder];
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:
-                        localStudentsURL];
+                        [MappingProvider jsonURLFromString:_url]];
         if (data) {
             [self performSelectorOnMainThread:@selector(fetchedData:)
                                    withObject:data waitUntilDone:YES];
@@ -51,28 +52,28 @@
 }
 
 - (void)fetchedData:(NSData *)responseData {
-    //parse out the json data
-    NSError* error;
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:responseData //1
-                          
-                          options:kNilOptions
-                          error:&error];
-    
-    NSArray* students = [json objectForKey:@"students"]; //2
-    NSInteger index=[_idTextField.text integerValue];
-    NSLog(@"students: %@", students); //3
-    for (NSDictionary *student in students) {
-        NSNumber *indexNum=[student objectForKey:@"id"];
-        if ([indexNum integerValue]==index) {
-            NSString *name = [student objectForKey:@"name"];
-            NSNumber *id_num = [student objectForKey:@"id_num"];
-            NSNumber *weight = [student objectForKey:@"weight"];
-            NSString *imageURL = [student objectForKey:@"image_url"];
-            
-            
-        }
-    }
+//    //parse out the json data
+//    NSError* error;
+//    NSDictionary* json = [NSJSONSerialization
+//                          JSONObjectWithData:responseData //1
+//                          
+//                          options:kNilOptions
+//                          error:&error];
+//    
+//    NSArray* students = [json objectForKey:@"students"]; //2
+//    NSInteger index=[_idTextField.text integerValue];
+//    NSLog(@"students: %@", students); //3
+//    for (NSDictionary *student in students) {
+//        NSNumber *indexNum=[student objectForKey:@"id"];
+//        if ([indexNum integerValue]==index) {
+//            NSString *name = [student objectForKey:@"name"];
+//            NSNumber *id_num = [student objectForKey:@"id_num"];
+//            NSNumber *weight = [student objectForKey:@"weight"];
+//            NSString *imageURL = [student objectForKey:@"image_url"];
+//            
+//            
+//        }
+//    }
 }
 
 -(NSURL *)imageFullURLFromURL:(NSString *)url{

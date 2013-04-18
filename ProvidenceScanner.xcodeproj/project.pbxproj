@@ -24,7 +24,7 @@
 		C13046FA171F7A6A0033892A /* StudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046F9171F7A6A0033892A /* StudentsViewController.m */; };
 		C13046FD171F8A760033892A /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046FC171F8A760033892A /* MappingProvider.m */; };
 		C13046FF171FABBA0033892A /* ironman3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C13046FE171FABB90033892A /* ironman3.jpeg */; };
-		C1304702171FB7930033892A /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1304701171FB7930033892A /* ScannerViewController.m */; };
+		C16B3AE81720878700F55133 /* trollFace.png in Resources */ = {isa = PBXBuildFile; fileRef = C16B3AE71720878700F55133 /* trollFace.png */; };
 		CDC418D7903545A5B75AB583 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2369D759B6455299244057 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +56,7 @@
 		C13046FB171F8A760033892A /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
 		C13046FC171F8A760033892A /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
 		C13046FE171FABB90033892A /* ironman3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ironman3.jpeg; sourceTree = "<group>"; };
-		C1304700171FB7930033892A /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
-		C1304701171FB7930033892A /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
+		C16B3AE71720878700F55133 /* trollFace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trollFace.png; sourceTree = "<group>"; };
 		DC2369D759B6455299244057 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,6 +129,7 @@
 				C13046D2171F668B0033892A /* InfoPlist.strings */,
 				C13046D5171F668B0033892A /* main.m */,
 				C13046D7171F668B0033892A /* ProvidenceScanner-Prefix.pch */,
+				C16B3AE71720878700F55133 /* trollFace.png */,
 				C13046DB171F668B0033892A /* Default.png */,
 				C13046DD171F668B0033892A /* Default@2x.png */,
 				C13046DF171F668B0033892A /* Default-568h@2x.png */,
@@ -144,8 +144,6 @@
 				C13046F9171F7A6A0033892A /* StudentsViewController.m */,
 				C13046E7171F668B0033892A /* ProfileViewController.h */,
 				C13046E8171F668B0033892A /* ProfileViewController.m */,
-				C1304700171FB7930033892A /* ScannerViewController.h */,
-				C1304701171FB7930033892A /* ScannerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -228,6 +226,7 @@
 				C13046E3171F668B0033892A /* MainStoryboard_iPhone.storyboard in Resources */,
 				C13046E6171F668B0033892A /* MainStoryboard_iPad.storyboard in Resources */,
 				C13046FF171FABBA0033892A /* ironman3.jpeg in Resources */,
+				C16B3AE81720878700F55133 /* trollFace.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +275,6 @@
 				C13046F7171F78200033892A /* StudentsCell.m in Sources */,
 				C13046FA171F7A6A0033892A /* StudentsViewController.m in Sources */,
 				C13046FD171F8A760033892A /* MappingProvider.m in Sources */,
-				C1304702171FB7930033892A /* ScannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,9 +11,10 @@
 
 @interface ProfileViewController : UIViewController
 @property(strong,nonatomic) Student *student;
-- (IBAction)findStudent:(id)sender;
-@property (strong, nonatomic) IBOutlet UITextField *idTextField;
+@property(strong, nonatomic)NSString *url;
 
+
+@property (strong, nonatomic) IBOutlet UIImageView *qrImageView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *studentIDLabel;
 @property (strong, nonatomic) IBOutlet UILabel *weightLabel;

@@ -4,11 +4,16 @@
 
 #import <Availability.h>
 
+#define localStudentURL @"http://localhost:3000"
+#define publicStudentsURL @"http://shielded-savannah-1873.herokuapp.com"
+
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
 #ifdef __OBJC__
+
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "MappingProvider.h"
 #endif

@@ -14,10 +14,11 @@
 #import "MappingProvider.h"
 #import "ProfileViewController.h"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) 
-#define localStudentsURL [NSURL URLWithString:@"http://localhost:3000/students.json"]
+
 @interface StudentsViewController ()
 @property(nonatomic,strong)NSArray *students;
 @property(nonatomic,strong)Student *selectedStudent;
+@property(nonatomic,strong)NSString *selectedURL;
 @end
 
 @implementation StudentsViewController
@@ -35,6 +36,8 @@
 {
     [super viewDidLoad];
     [_tableView setRowHeight:85];
+    isLocalURL=YES;
+    _selectedURL=localStudentURL;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     [SVProgressHUD show];
     
@@ -57,7 +60,7 @@
                         pathPattern:@"/students.json"
                             keyPath:@"students"
                         statusCodes:statusCodeSet];
-    NSURLRequest *request = [NSURLRequest requestWithURL:localStudentsURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[MappingProvider jsonURLFromString:_selectedURL]];
     RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc]initWithRequest:request responseDescriptors:@[responseDescriptor]];
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
         assert([NSThread isMainThread]);
@@ -84,7 +87,6 @@
     StudentsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (_students) {
         Student *student=[_students objectAtIndex:indexPath.row];
-        NSLog(@"table cell image %@", student.imageURL);
         [self configureStudentCell:cell forStudent:student];
     }
     
@@ -95,7 +97,7 @@
     cell.nameLabel.text=student.name;
     cell.student_numLabel.text=[NSString stringWithFormat:@"id# %d", student.idNum];
     UIImage *defaultImage = [UIImage imageNamed:@"ironman3.jpeg"];
-    [cell.imageView setImageWithURL:[self imageFullURLFromURL:student.imageURL]
+    [cell.imageView setImageWithURL:[MappingProvider imageURL:student.imageURL FromString:_selectedURL]
                         placeholderImage:defaultImage];
 }
 
@@ -118,14 +120,21 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ProfileViewController *profileViewController = segue.destinationViewController;
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    self.selectedStudent = [self.students objectAtIndex:indexPath.row];
-    profileViewController.student = self.selectedStudent;
+    if ([segue.identifier isEqualToString:@"profileviewcontroller"]) {
+        ProfileViewController *profileViewController = segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        self.selectedStudent = [self.students objectAtIndex:indexPath.row];
+        [self prepProfile:profileViewController];
+    }
+    
 }
 
-
+-(void)prepProfile:(ProfileViewController *)profileController{
+    profileController.student = self.selectedStudent;
+    profileController.url=_selectedURL;
+}
 
 
 
@@ -136,6 +145,51 @@
 }
 
 - (IBAction)reloadTable:(id)sender {
-    [_tableView reloadData];
+    _selectedURL=(localStudentURL)?publicStudentsURL:localStudentURL;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    [SVProgressHUD show];
+    
+    dispatch_async(queue, ^{
+        [self loadStudents];
+    });
+}
+
+- (IBAction)scanTapped:(id)sender {
+    ZBarReaderViewController *reader=[ZBarReaderViewController new];
+    reader.readerDelegate=self;
+    reader.supportedOrientationsMask=ZBarOrientationMaskAll;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    
+    [scanner setSymbology:symbolType config:ZBAR_CFG_ENABLE to:ZBAR_QRCODE];
+    
+    [self presentViewController:reader animated:YES completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for (symbol in results) {
+        break;
+    }
+    
+    NSLog(@"idfound : %d",[symbol.data integerValue]);
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:^(void){
+        if (_students) {
+            _selectedStudent=nil;
+            for (Student *student in _students) {
+                if (student.idNum==[symbol.data integerValue]) {
+                    _selectedStudent=student;
+                    break;
+                }
+            }
+            if (_selectedStudent) {
+                ProfileViewController *profileController=[self.storyboard instantiateViewControllerWithIdentifier:@"profileviewcontroller"];
+                [self prepProfile:profileController];
+                [self.navigationController pushViewController:profileController animated:YES];
+            }
+        }
+    }];
 }
 @end
