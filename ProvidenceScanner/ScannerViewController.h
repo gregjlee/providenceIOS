@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ScannerViewController.h
 //  ProvidenceScanner
 //
 //  Created by Gregory Lee on 4/17/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ScannerViewController : UIViewController
 
 @end

@@ -18,10 +18,18 @@
 		C13046E0171F668B0033892A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13046DF171F668B0033892A /* Default-568h@2x.png */; };
 		C13046E3171F668B0033892A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C13046E1171F668B0033892A /* MainStoryboard_iPhone.storyboard */; };
 		C13046E6171F668B0033892A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C13046E4171F668B0033892A /* MainStoryboard_iPad.storyboard */; };
-		C13046E9171F668B0033892A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046E8171F668B0033892A /* ViewController.m */; };
+		C13046E9171F668B0033892A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046E8171F668B0033892A /* ProfileViewController.m */; };
+		C13046F1171F66ED0033892A /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046F0171F66ED0033892A /* Student.m */; };
+		C13046F7171F78200033892A /* StudentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046F6171F78200033892A /* StudentsCell.m */; };
+		C13046FA171F7A6A0033892A /* StudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046F9171F7A6A0033892A /* StudentsViewController.m */; };
+		C13046FD171F8A760033892A /* MappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = C13046FC171F8A760033892A /* MappingProvider.m */; };
+		C13046FF171FABBA0033892A /* ironman3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C13046FE171FABB90033892A /* ironman3.jpeg */; };
+		C1304702171FB7930033892A /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1304701171FB7930033892A /* ScannerViewController.m */; };
+		CDC418D7903545A5B75AB583 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2369D759B6455299244057 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF2E3DFE5F624333B81D08E1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C13046C6171F668B0033892A /* ProvidenceScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProvidenceScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13046C9171F668B0033892A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C13046CB171F668B0033892A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,8 +45,20 @@
 		C13046DF171F668B0033892A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C13046E2171F668B0033892A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		C13046E5171F668B0033892A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		C13046E7171F668B0033892A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C13046E8171F668B0033892A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C13046E7171F668B0033892A /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		C13046E8171F668B0033892A /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		C13046EF171F66ED0033892A /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		C13046F0171F66ED0033892A /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		C13046F5171F78200033892A /* StudentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsCell.h; sourceTree = "<group>"; };
+		C13046F6171F78200033892A /* StudentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsCell.m; sourceTree = "<group>"; };
+		C13046F8171F7A6A0033892A /* StudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsViewController.h; sourceTree = "<group>"; };
+		C13046F9171F7A6A0033892A /* StudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsViewController.m; sourceTree = "<group>"; };
+		C13046FB171F8A760033892A /* MappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MappingProvider.h; sourceTree = "<group>"; };
+		C13046FC171F8A760033892A /* MappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MappingProvider.m; sourceTree = "<group>"; };
+		C13046FE171FABB90033892A /* ironman3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ironman3.jpeg; sourceTree = "<group>"; };
+		C1304700171FB7930033892A /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
+		C1304701171FB7930033892A /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
+		DC2369D759B6455299244057 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +69,7 @@
 				C13046CA171F668B0033892A /* UIKit.framework in Frameworks */,
 				C13046CC171F668B0033892A /* Foundation.framework in Frameworks */,
 				C13046CE171F668B0033892A /* CoreGraphics.framework in Frameworks */,
+				CDC418D7903545A5B75AB583 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +82,7 @@
 				C13046CF171F668B0033892A /* ProvidenceScanner */,
 				C13046C8171F668B0033892A /* Frameworks */,
 				C13046C7171F668B0033892A /* Products */,
+				AF2E3DFE5F624333B81D08E1 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +100,7 @@
 				C13046C9171F668B0033892A /* UIKit.framework */,
 				C13046CB171F668B0033892A /* Foundation.framework */,
 				C13046CD171F668B0033892A /* CoreGraphics.framework */,
+				DC2369D759B6455299244057 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -87,10 +110,13 @@
 			children = (
 				C13046D8171F668B0033892A /* AppDelegate.h */,
 				C13046D9171F668B0033892A /* AppDelegate.m */,
+				C13046FB171F8A760033892A /* MappingProvider.h */,
+				C13046FC171F8A760033892A /* MappingProvider.m */,
 				C13046E1171F668B0033892A /* MainStoryboard_iPhone.storyboard */,
 				C13046E4171F668B0033892A /* MainStoryboard_iPad.storyboard */,
-				C13046E7171F668B0033892A /* ViewController.h */,
-				C13046E8171F668B0033892A /* ViewController.m */,
+				C13046F4171F77FD0033892A /* Views */,
+				C13046F3171F77DD0033892A /* Models */,
+				C13046F2171F77D40033892A /* Controllers */,
 				C13046D0171F668B0033892A /* Supporting Files */,
 			);
 			path = ProvidenceScanner;
@@ -99,6 +125,7 @@
 		C13046D0171F668B0033892A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C13046FE171FABB90033892A /* ironman3.jpeg */,
 				C13046D1171F668B0033892A /* ProvidenceScanner-Info.plist */,
 				C13046D2171F668B0033892A /* InfoPlist.strings */,
 				C13046D5171F668B0033892A /* main.m */,
@@ -110,6 +137,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C13046F2171F77D40033892A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C13046F8171F7A6A0033892A /* StudentsViewController.h */,
+				C13046F9171F7A6A0033892A /* StudentsViewController.m */,
+				C13046E7171F668B0033892A /* ProfileViewController.h */,
+				C13046E8171F668B0033892A /* ProfileViewController.m */,
+				C1304700171FB7930033892A /* ScannerViewController.h */,
+				C1304701171FB7930033892A /* ScannerViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C13046F3171F77DD0033892A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C13046EF171F66ED0033892A /* Student.h */,
+				C13046F0171F66ED0033892A /* Student.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C13046F4171F77FD0033892A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C13046F5171F78200033892A /* StudentsCell.h */,
+				C13046F6171F78200033892A /* StudentsCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C13046EC171F668B0033892A /* Build configuration list for PBXNativeTarget "ProvidenceScanner" */;
 			buildPhases = (
+				194BA91E15804905B9AB5B14 /* Check Pods Manifest.lock */,
 				C13046C2171F668B0033892A /* Sources */,
 				C13046C3171F668B0033892A /* Frameworks */,
 				C13046C4171F668B0033892A /* Resources */,
+				487B9BCFAFEE4A8CBA7B53D4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,10 +227,42 @@
 				C13046E0171F668B0033892A /* Default-568h@2x.png in Resources */,
 				C13046E3171F668B0033892A /* MainStoryboard_iPhone.storyboard in Resources */,
 				C13046E6171F668B0033892A /* MainStoryboard_iPad.storyboard in Resources */,
+				C13046FF171FABBA0033892A /* ironman3.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		194BA91E15804905B9AB5B14 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+		487B9BCFAFEE4A8CBA7B53D4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C13046C2171F668B0033892A /* Sources */ = {
@@ -179,7 +271,12 @@
 			files = (
 				C13046D6171F668B0033892A /* main.m in Sources */,
 				C13046DA171F668B0033892A /* AppDelegate.m in Sources */,
-				C13046E9171F668B0033892A /* ViewController.m in Sources */,
+				C13046E9171F668B0033892A /* ProfileViewController.m in Sources */,
+				C13046F1171F66ED0033892A /* Student.m in Sources */,
+				C13046F7171F78200033892A /* StudentsCell.m in Sources */,
+				C13046FA171F7A6A0033892A /* StudentsViewController.m in Sources */,
+				C13046FD171F8A760033892A /* MappingProvider.m in Sources */,
+				C1304702171FB7930033892A /* ScannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +370,7 @@
 		};
 		C13046ED171F668B0033892A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF2E3DFE5F624333B81D08E1 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProvidenceScanner/ProvidenceScanner-Prefix.pch";
@@ -284,6 +382,7 @@
 		};
 		C13046EE171F668B0033892A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF2E3DFE5F624333B81D08E1 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProvidenceScanner/ProvidenceScanner-Prefix.pch";
@@ -312,6 +411,7 @@
 				C13046EE171F668B0033892A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
