@@ -37,21 +37,19 @@
     [super viewDidLoad];
     [_tableView setRowHeight:85];
     isLocalURL=YES;
-    _selectedURL=localStudentURL;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    [SVProgressHUD show];
+    _selectedURL=publicStudentsURL;
     
-    dispatch_async(queue, ^{
-        [self loadStudents];
-    });
     
 	// Do any additional setup after loading the view.
 }
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    [SVProgressHUD show];
+    dispatch_async(queue, ^{
+        [self loadStudents];
+    });
 }
-
 #pragma load students
 -(void)loadStudents{
     NSIndexSet *statusCodeSet = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
@@ -74,6 +72,7 @@
     }];
     [operation start];
 }
+
 -(NSURL *)imageFullURLFromURL:(NSString *)url{
     NSString *fullURL=[NSString stringWithFormat:@"http://localhost:3000/assets/%@",url];
     return [NSURL URLWithString:fullURL];
@@ -116,20 +115,15 @@
 #pragma mark table delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ProfileViewController *profileViewController= [[UIStoryboard storyboardWithName:@"ProfileStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"profileviewcontroller"];
+    self.selectedStudent = [self.students objectAtIndex:indexPath.row];
+    [self prepProfile:profileViewController];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.navigationController pushViewController:profileViewController animated:YES];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"profileviewcontroller"]) {
-        ProfileViewController *profileViewController = segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        self.selectedStudent = [self.students objectAtIndex:indexPath.row];
-        [self prepProfile:profileViewController];
-    }
-    
-}
+
 
 -(void)prepProfile:(ProfileViewController *)profileController{
     profileController.student = self.selectedStudent;
@@ -146,6 +140,7 @@
 
 - (IBAction)reloadTable:(id)sender {
     _selectedURL=(localStudentURL)?publicStudentsURL:localStudentURL;
+    self.navigationItem.title=([self.navigationItem.title isEqualToString:@"Public"])?@"Local":@"Public";
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     [SVProgressHUD show];
     
@@ -164,6 +159,9 @@
     [scanner setSymbology:symbolType config:ZBAR_CFG_ENABLE to:ZBAR_QRCODE];
     
     [self presentViewController:reader animated:YES completion:nil];
+}
+
+- (IBAction)addStudent:(id)sender {
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
@@ -185,9 +183,9 @@
                 }
             }
             if (_selectedStudent) {
-                ProfileViewController *profileController=[self.storyboard instantiateViewControllerWithIdentifier:@"profileviewcontroller"];
-                [self prepProfile:profileController];
-                [self.navigationController pushViewController:profileController animated:YES];
+                ProfileViewController *profileViewController= [[UIStoryboard storyboardWithName:@"ProfileStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"profileviewcontroller"];
+                [self prepProfile:profileViewController];
+                [self.navigationController pushViewController:profileViewController animated:YES];
             }
         }
     }];

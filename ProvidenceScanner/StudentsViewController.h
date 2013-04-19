@@ -17,4 +17,5 @@
 - (IBAction)reloadTable:(id)sender;
 - (IBAction)scanTapped:(id)sender;
 
+- (IBAction)addStudent:(id)sender;
 @end

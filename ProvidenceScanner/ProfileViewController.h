@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "Student.h"
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UITableViewController
 @property(strong,nonatomic) Student *student;
 @property(strong, nonatomic)NSString *url;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 
 @property (strong, nonatomic) IBOutlet UIImageView *qrImageView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *studentIDLabel;
-@property (strong, nonatomic) IBOutlet UILabel *weightLabel;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *idNumField;
+@property (strong, nonatomic) IBOutlet UITextField *weightField;
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @end

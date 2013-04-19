@@ -14,9 +14,15 @@
     return jsonURL;
 }
 +(NSURL *) imageURL:(NSString *)imageName FromString:(NSString *)url{
-    NSURL *imageURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/%@", url,imageName]];
+    NSURL *imageURL=[NSURL URLWithString:imageName];
     return imageURL;
 }
+
++(NSURL *)jsonURLFromString:(NSString *)url withID:(NSInteger)studentID{
+    NSURL *jsonURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@/students/%d.json", url,studentID]];
+    return jsonURL;
+}
+
 +(RKMapping *)studentMapping{
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[Student class]];
     [mapping addAttributeMappingsFromArray:@[@"name", @"weight"]];

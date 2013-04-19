@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import <AFNetworking.h>
+#import <SVProgressHUD.h>
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define qrSiteURL @"http://qrfree.kaywa.com/?l=1&s=8&d="
 @interface ProfileViewController ()
@@ -19,14 +20,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setRightBarButtonItem:[self configureDoneButton]];
     [self loadStudent];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+-(UIBarButtonItem *)configureDoneButton{
+    UIBarButtonItem *doneButton=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEditing:)];
+    return doneButton;
+}
 -(void)loadStudent{
-    _nameLabel.text=[NSString stringWithFormat:@"Name: %@",_student.name];
-    _studentIDLabel.text=[NSString stringWithFormat:@"studentID: %d", _student.idNum];
-    _weightLabel.text=[NSString stringWithFormat:@"weight: %d", _student.weight];
+    _nameTextField.text=_student.name;
+    _idNumField.text=[NSString stringWithFormat:@"%d", _student.idNum];
+    _weightField.text=[NSString stringWithFormat:@"%d", _student.weight];
     [_imageView setImageWithURL:[MappingProvider imageURL:_student.imageURL FromString:_url] placeholderImage:[UIImage imageNamed:@"ironman3.jpeg"]];
     NSURL *qrURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@%d",qrSiteURL,_student.idNum]];
     [_qrImageView setImageWithURL:qrURL placeholderImage:[UIImage imageNamed:@"trollFace.png"]];
@@ -38,6 +44,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)doneEditing:(id)sender{
+    
+    NSDictionary *renameDict=@{@"name": _nameTextField.text, @"id_num": _idNumField.text, @"weight": _weightField.text};
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:renameDict options:kNilOptions error:&error];
+    
+    
+    NSURL *jsonURL = [MappingProvider jsonURLFromString:_url withID:_student.studentId];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:jsonURL];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:jsonData];
+    
+    // print json:
+    NSLog(@"JSON summary: %@", [[NSString alloc] initWithData:jsonData
+                                                     encoding:NSUTF8StringEncoding]);
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+    
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (IBAction)findStudent:(id)sender {
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:

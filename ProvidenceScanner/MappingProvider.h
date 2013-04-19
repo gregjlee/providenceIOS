@@ -11,5 +11,6 @@
 @interface MappingProvider : NSObject
 +(NSURL *) jsonURLFromString:(NSString *)url;
 +(NSURL *) imageURL:(NSString *)imageName FromString:(NSString *)url;
++(NSURL *)jsonURLFromString:(NSString *)url withID:(NSInteger)studentID;
 +(RKMapping *)studentMapping;
 @end
