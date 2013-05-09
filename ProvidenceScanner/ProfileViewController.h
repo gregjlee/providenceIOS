@@ -11,7 +11,6 @@
 
 @interface ProfileViewController : UITableViewController
 @property(strong,nonatomic) Student *student;
-@property(strong, nonatomic)NSString *url;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 

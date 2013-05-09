@@ -11,11 +11,12 @@
 
 @interface StudentsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,ZBarReaderDelegate>{
     zbar_symbol_type_t symbolType;
-    BOOL isLocalURL;
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)reloadTable:(id)sender;
+- (IBAction)reloadTableTapped:(id)sender;
 - (IBAction)scanTapped:(id)sender;
+- (IBAction)switchURLTapped:(id)sender;
 
 - (IBAction)addStudent:(id)sender;
+@property(assign,nonatomic)BOOL isChanged;
 @end

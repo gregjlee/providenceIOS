@@ -13,12 +13,12 @@
 #import <SVProgressHUD.h>
 #import "MappingProvider.h"
 #import "ProfileViewController.h"
+#import "StudentStore.h"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) 
 
 @interface StudentsViewController ()
 @property(nonatomic,strong)NSArray *students;
 @property(nonatomic,strong)Student *selectedStudent;
-@property(nonatomic,strong)NSString *selectedURL;
 @end
 
 @implementation StudentsViewController
@@ -35,42 +35,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _isChanged=NO;
     [_tableView setRowHeight:85];
-    isLocalURL=YES;
-    _selectedURL=publicStudentsURL;
+    self.navigationItem.title=([[StudentStore store] isLocalURL])?@"Local":@"Public";
+
+    
     
     
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    [SVProgressHUD show];
-    dispatch_async(queue, ^{
+    if (!_students) {
         [self loadStudents];
-    });
+    }
+    else{
+        if (_isChanged) {
+            _isChanged=NO;
+            [self loadStudents];
+        }
+    }
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
 }
 #pragma load students
 -(void)loadStudents{
-    NSIndexSet *statusCodeSet = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
-    RKMapping *mapping = [MappingProvider studentMapping];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping
-                        pathPattern:@"/students.json"
-                            keyPath:@"students"
-                        statusCodes:statusCodeSet];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[MappingProvider jsonURLFromString:_selectedURL]];
-    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc]initWithRequest:request responseDescriptors:@[responseDescriptor]];
-    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
-        assert([NSThread isMainThread]);
-        _students = mappingResult.array;
+    [[StudentStore store]loadStudents:^(NSArray *students) {
+        _students=students;
         [_tableView reloadData];
-        [SVProgressHUD dismiss];
-    }failure:^(RKObjectRequestOperation *operation, NSError *error){
-        NSLog(@"ERROR: %@", error);
-        NSLog(@"Response : %@", operation.HTTPRequestOperation.responseString);
-        [SVProgressHUD showErrorWithStatus:@"Request failed"];
     }];
-    [operation start];
 }
 
 -(NSURL *)imageFullURLFromURL:(NSString *)url{
@@ -95,8 +90,9 @@
 -(void)configureStudentCell:(StudentsCell *)cell forStudent:(Student *)student{
     cell.nameLabel.text=student.name;
     cell.student_numLabel.text=[NSString stringWithFormat:@"id# %d", student.idNum];
+    NSLog(@"configCell url %@",student.imageURL);
     UIImage *defaultImage = [UIImage imageNamed:@"ironman3.jpeg"];
-    [cell.imageView setImageWithURL:[MappingProvider imageURL:student.imageURL FromString:_selectedURL]
+    [cell.imageView setImageWithURL:[MappingProvider imageURL:student.imageURL FromString:[[StudentStore store]selectedURL]]
                         placeholderImage:defaultImage];
 }
 
@@ -127,7 +123,6 @@
 
 -(void)prepProfile:(ProfileViewController *)profileController{
     profileController.student = self.selectedStudent;
-    profileController.url=_selectedURL;
 }
 
 
@@ -138,15 +133,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)reloadTable:(id)sender {
-    _selectedURL=(localStudentURL)?publicStudentsURL:localStudentURL;
-    self.navigationItem.title=([self.navigationItem.title isEqualToString:@"Public"])?@"Local":@"Public";
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    [SVProgressHUD show];
-    
-    dispatch_async(queue, ^{
-        [self loadStudents];
-    });
+- (IBAction)reloadTableTapped:(id)sender {
+    [self loadStudents];
 }
 
 - (IBAction)scanTapped:(id)sender {
@@ -159,6 +147,14 @@
     [scanner setSymbology:symbolType config:ZBAR_CFG_ENABLE to:ZBAR_QRCODE];
     
     [self presentViewController:reader animated:YES completion:nil];
+}
+
+- (IBAction)switchURLTapped:(id)sender {
+    BOOL isLocalURL=[[StudentStore store]isLocalURL];
+    
+    [StudentStore store].selectedURL=(isLocalURL)?publicStudentsURL:localStudentURL;
+    [self loadStudents];
+    self.navigationItem.title=(isLocalURL)?@"Local":@"Public";
 }
 
 - (IBAction)addStudent:(id)sender {

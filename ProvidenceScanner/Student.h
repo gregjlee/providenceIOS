@@ -14,6 +14,6 @@
 @property(nonatomic,assign)NSInteger idNum;
 @property(nonatomic,assign)NSInteger weight;
 @property(nonatomic,copy)NSString *imageURL;
-
+-(NSDictionary *)dictionaryValue;
 
 @end

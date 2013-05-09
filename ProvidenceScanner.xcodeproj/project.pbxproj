@@ -26,6 +26,13 @@
 		C13046FF171FABBA0033892A /* ironman3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C13046FE171FABB90033892A /* ironman3.jpeg */; };
 		C16B3AE81720878700F55133 /* trollFace.png in Resources */ = {isa = PBXBuildFile; fileRef = C16B3AE71720878700F55133 /* trollFace.png */; };
 		C16B3AEA17209B1600F55133 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C16B3AE917209B1600F55133 /* ProfileStoryboard.storyboard */; };
+		C172E289173A007B0027A27B /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C172E288173A007B0027A27B /* AddViewController.m */; };
+		C172E291173A08D60027A27B /* CaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C172E28B173A08D60027A27B /* CaptureManager.m */; };
+		C172E292173A08D60027A27B /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C172E28D173A08D60027A27B /* UIImage+Utilities.m */; };
+		C172E293173A08D60027A27B /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C172E28F173A08D60027A27B /* CameraViewController.m */; };
+		C172E294173A08D60027A27B /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C172E290173A08D60027A27B /* CameraViewController.xib */; };
+		C172E297173A0CC90027A27B /* crop_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = C172E296173A0CC90027A27B /* crop_frame.png */; };
+		C172E29A173A17A00027A27B /* StudentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C172E299173A17A00027A27B /* StudentStore.m */; };
 		CDC418D7903545A5B75AB583 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2369D759B6455299244057 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +66,18 @@
 		C13046FE171FABB90033892A /* ironman3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ironman3.jpeg; sourceTree = "<group>"; };
 		C16B3AE71720878700F55133 /* trollFace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trollFace.png; sourceTree = "<group>"; };
 		C16B3AE917209B1600F55133 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
+		C172E287173A007B0027A27B /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		C172E288173A007B0027A27B /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		C172E28A173A08D60027A27B /* CaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureManager.h; sourceTree = "<group>"; };
+		C172E28B173A08D60027A27B /* CaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureManager.m; sourceTree = "<group>"; };
+		C172E28C173A08D60027A27B /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
+		C172E28D173A08D60027A27B /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
+		C172E28E173A08D60027A27B /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		C172E28F173A08D60027A27B /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		C172E290173A08D60027A27B /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		C172E296173A0CC90027A27B /* crop_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crop_frame.png; sourceTree = "<group>"; };
+		C172E298173A17A00027A27B /* StudentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentStore.h; sourceTree = "<group>"; };
+		C172E299173A17A00027A27B /* StudentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentStore.m; sourceTree = "<group>"; };
 		DC2369D759B6455299244057 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,10 +130,9 @@
 			children = (
 				C13046D8171F668B0033892A /* AppDelegate.h */,
 				C13046D9171F668B0033892A /* AppDelegate.m */,
+				C172E295173A09E50027A27B /* CameraHelpers */,
 				C13046FB171F8A760033892A /* MappingProvider.h */,
 				C13046FC171F8A760033892A /* MappingProvider.m */,
-				C13046E1171F668B0033892A /* MainStoryboard_iPhone.storyboard */,
-				C16B3AE917209B1600F55133 /* ProfileStoryboard.storyboard */,
 				C13046E4171F668B0033892A /* MainStoryboard_iPad.storyboard */,
 				C13046F4171F77FD0033892A /* Views */,
 				C13046F3171F77DD0033892A /* Models */,
@@ -127,6 +145,7 @@
 		C13046D0171F668B0033892A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C172E296173A0CC90027A27B /* crop_frame.png */,
 				C13046FE171FABB90033892A /* ironman3.jpeg */,
 				C13046D1171F668B0033892A /* ProvidenceScanner-Info.plist */,
 				C13046D2171F668B0033892A /* InfoPlist.strings */,
@@ -143,10 +162,14 @@
 		C13046F2171F77D40033892A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C172E28E173A08D60027A27B /* CameraViewController.h */,
+				C172E28F173A08D60027A27B /* CameraViewController.m */,
 				C13046F8171F7A6A0033892A /* StudentsViewController.h */,
 				C13046F9171F7A6A0033892A /* StudentsViewController.m */,
 				C13046E7171F668B0033892A /* ProfileViewController.h */,
 				C13046E8171F668B0033892A /* ProfileViewController.m */,
+				C172E287173A007B0027A27B /* AddViewController.h */,
+				C172E288173A007B0027A27B /* AddViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -156,6 +179,8 @@
 			children = (
 				C13046EF171F66ED0033892A /* Student.h */,
 				C13046F0171F66ED0033892A /* Student.m */,
+				C172E298173A17A00027A27B /* StudentStore.h */,
+				C172E299173A17A00027A27B /* StudentStore.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -163,10 +188,24 @@
 		C13046F4171F77FD0033892A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C13046E1171F668B0033892A /* MainStoryboard_iPhone.storyboard */,
+				C16B3AE917209B1600F55133 /* ProfileStoryboard.storyboard */,
 				C13046F5171F78200033892A /* StudentsCell.h */,
 				C13046F6171F78200033892A /* StudentsCell.m */,
+				C172E290173A08D60027A27B /* CameraViewController.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		C172E295173A09E50027A27B /* CameraHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				C172E28A173A08D60027A27B /* CaptureManager.h */,
+				C172E28B173A08D60027A27B /* CaptureManager.m */,
+				C172E28C173A08D60027A27B /* UIImage+Utilities.h */,
+				C172E28D173A08D60027A27B /* UIImage+Utilities.m */,
+			);
+			name = CameraHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +270,8 @@
 				C13046FF171FABBA0033892A /* ironman3.jpeg in Resources */,
 				C16B3AE81720878700F55133 /* trollFace.png in Resources */,
 				C16B3AEA17209B1600F55133 /* ProfileStoryboard.storyboard in Resources */,
+				C172E294173A08D60027A27B /* CameraViewController.xib in Resources */,
+				C172E297173A0CC90027A27B /* crop_frame.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +320,11 @@
 				C13046F7171F78200033892A /* StudentsCell.m in Sources */,
 				C13046FA171F7A6A0033892A /* StudentsViewController.m in Sources */,
 				C13046FD171F8A760033892A /* MappingProvider.m in Sources */,
+				C172E289173A007B0027A27B /* AddViewController.m in Sources */,
+				C172E291173A08D60027A27B /* CaptureManager.m in Sources */,
+				C172E292173A08D60027A27B /* UIImage+Utilities.m in Sources */,
+				C172E293173A08D60027A27B /* CameraViewController.m in Sources */,
+				C172E29A173A17A00027A27B /* StudentStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +424,7 @@
 				GCC_PREFIX_HEADER = "ProvidenceScanner/ProvidenceScanner-Prefix.pch";
 				INFOPLIST_FILE = "ProvidenceScanner/ProvidenceScanner-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,6 +437,7 @@
 				GCC_PREFIX_HEADER = "ProvidenceScanner/ProvidenceScanner-Prefix.pch";
 				INFOPLIST_FILE = "ProvidenceScanner/ProvidenceScanner-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

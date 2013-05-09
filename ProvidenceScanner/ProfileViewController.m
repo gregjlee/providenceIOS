@@ -9,6 +9,8 @@
 #import "ProfileViewController.h"
 #import <AFNetworking.h>
 #import <SVProgressHUD.h>
+#import "StudentStore.h"
+#import "StudentsViewController.h"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define qrSiteURL @"http://qrfree.kaywa.com/?l=1&s=8&d="
 @interface ProfileViewController ()
@@ -33,7 +35,7 @@
     _nameTextField.text=_student.name;
     _idNumField.text=[NSString stringWithFormat:@"%d", _student.idNum];
     _weightField.text=[NSString stringWithFormat:@"%d", _student.weight];
-    [_imageView setImageWithURL:[MappingProvider imageURL:_student.imageURL FromString:_url] placeholderImage:[UIImage imageNamed:@"ironman3.jpeg"]];
+    [_imageView setImageWithURL:[MappingProvider imageURL:_student.imageURL FromString:[StudentStore store].selectedURL] placeholderImage:[UIImage imageNamed:@"ironman3.jpeg"]];
     NSURL *qrURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@%d",qrSiteURL,_student.idNum]];
     [_qrImageView setImageWithURL:qrURL placeholderImage:[UIImage imageNamed:@"trollFace.png"]];
 }
@@ -45,36 +47,18 @@
 }
 
 -(void)doneEditing:(id)sender{
-    
-    NSDictionary *renameDict=@{@"name": _nameTextField.text, @"id_num": _idNumField.text, @"weight": _weightField.text};
-    
-    NSError *error;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:renameDict options:kNilOptions error:&error];
-    
-    
-    NSURL *jsonURL = [MappingProvider jsonURLFromString:_url withID:_student.studentId];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:jsonURL];
-    [request setHTTPMethod:@"PUT"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setHTTPBody:jsonData];
-    
-    // print json:
-    NSLog(@"JSON summary: %@", [[NSString alloc] initWithData:jsonData
-                                                     encoding:NSUTF8StringEncoding]);
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [connection start];
-    
-    
+    _student.name=_nameTextField.text;
+    _student.idNum=[_idNumField.text integerValue];
+    _student.weight=[_weightField.text integerValue];
+    [[StudentStore store]updateStudent:_student];
+    StudentsViewController *svc=[self.navigationController viewControllers][0];
+    svc.isChanged=YES;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (IBAction)findStudent:(id)sender {
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:
-                        [MappingProvider jsonURLFromString:_url]];
+                        [MappingProvider jsonURLFromString:[StudentStore store].selectedURL]];
         if (data) {
             [self performSelectorOnMainThread:@selector(fetchedData:)
                                    withObject:data waitUntilDone:YES];
@@ -109,11 +93,6 @@
 //    }
 }
 
--(NSURL *)imageFullURLFromURL:(NSString *)url{
-    NSString *fullURL=[NSString stringWithFormat:@"http://localhost:3000/assets/%@",url];
-    return [NSURL URLWithString:fullURL];
-    
-}
 
 
 @end
