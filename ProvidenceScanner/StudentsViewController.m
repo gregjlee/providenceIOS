@@ -37,7 +37,6 @@
     [super viewDidLoad];
     _isChanged=NO;
     [_tableView setRowHeight:85];
-    self.navigationItem.title=([[StudentStore store] isLocalURL])?@"Local":@"Public";
 
     
     
@@ -65,6 +64,7 @@
     [[StudentStore store]loadStudents:^(NSArray *students) {
         _students=students;
         [_tableView reloadData];
+        self.navigationItem.title=([[StudentStore store] isLocalURL])?@"Local":@"Public";
     }];
 }
 
@@ -79,6 +79,9 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"studentcell";
     StudentsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell=[[StudentsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     if (_students) {
         Student *student=[_students objectAtIndex:indexPath.row];
         [self configureStudentCell:cell forStudent:student];
@@ -91,7 +94,7 @@
     cell.nameLabel.text=student.name;
     cell.student_numLabel.text=[NSString stringWithFormat:@"id# %d", student.idNum];
     NSLog(@"configCell url %@",student.imageURL);
-    UIImage *defaultImage = [UIImage imageNamed:@"ironman3.jpeg"];
+    UIImage *defaultImage = [UIImage imageNamed:@"facebook_avatar.png"];
     [cell.imageView setImageWithURL:[MappingProvider imageURL:student.imageURL FromString:[[StudentStore store]selectedURL]]
                         placeholderImage:defaultImage];
 }
@@ -154,7 +157,6 @@
     
     [StudentStore store].selectedURL=(isLocalURL)?publicStudentsURL:localStudentURL;
     [self loadStudents];
-    self.navigationItem.title=(isLocalURL)?@"Local":@"Public";
 }
 
 - (IBAction)addStudent:(id)sender {

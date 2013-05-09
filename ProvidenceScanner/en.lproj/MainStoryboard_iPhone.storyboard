@@ -79,7 +79,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ironman3.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="QbY-B1-IHS">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="facebook_avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="QbY-B1-IHS">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="RZu-o7-XCI"/>
                                                         <constraint firstAttribute="height" constant="75" id="fRv-HB-ncf"/>
@@ -367,7 +367,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ironman3.jpeg" width="177" height="177"/>
+        <image name="facebook_avatar.png" width="32" height="21"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

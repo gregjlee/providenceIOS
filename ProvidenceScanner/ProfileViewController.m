@@ -35,9 +35,9 @@
     _nameTextField.text=_student.name;
     _idNumField.text=[NSString stringWithFormat:@"%d", _student.idNum];
     _weightField.text=[NSString stringWithFormat:@"%d", _student.weight];
-    [_imageView setImageWithURL:[MappingProvider imageURL:_student.imageURL FromString:[StudentStore store].selectedURL] placeholderImage:[UIImage imageNamed:@"ironman3.jpeg"]];
+    [_imageView setImageWithURL:[MappingProvider imageURL:_student.imageURL FromString:[StudentStore store].selectedURL] placeholderImage:[UIImage imageNamed:@"facebook_avatar.png"]];
     NSURL *qrURL=[NSURL URLWithString:[NSString stringWithFormat:@"%@%d",qrSiteURL,_student.idNum]];
-    [_qrImageView setImageWithURL:qrURL placeholderImage:[UIImage imageNamed:@"trollFace.png"]];
+    [_qrImageView setImageWithURL:qrURL placeholderImage:[UIImage imageNamed:@"facebook_avatar.png"]];
 }
 
 - (void)didReceiveMemoryWarning
